@@ -2,5 +2,6 @@ Team Thinkpad
 - Jon Connell
 - Branislav Bogosavac
 - Ange K. Kouadio
+- Ty Saltzgiver
 
 Trello: https://trello.com/b/j5LEs53X
