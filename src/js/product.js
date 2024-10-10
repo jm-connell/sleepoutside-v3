@@ -3,7 +3,8 @@ import { findProductById } from './productData.mjs';
 
 function addProductToCart(product) {
   let cartArray = getLocalStorage('so-cart')
-  if (!cartArray) {
+
+  if (!Array.isArray(cartArray)) {
     cartArray = [];
   }
   cartArray.push(product);

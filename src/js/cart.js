@@ -1,15 +1,23 @@
-import { getLocalStorage } from './utils.mjs';
+import { setLocalStorage, getLocalStorage } from './utils.mjs';
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector('.product-list').innerHTML = htmlItems.join('');
+
+  document.querySelector('.product-list').addEventListener('click', (event) => {
+    if (event.target.classList.contains('remove-item')) {
+      const productId = event.target.getAttribute('data-id');
+      removeItemFromCart(productId);
+    }
+  });
 }
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
-    <img
+  <span class="remove-item" data-id="${item.Id}" style="cursor: pointer; color: red;">X</span>
+  <img
       src="${item.Image}"
       alt="${item.Name}"
     />
@@ -23,6 +31,14 @@ function cartItemTemplate(item) {
 </li>`;
 
   return newItem;
+}
+
+function removeItemFromCart(productId) {
+  let cartItems = getLocalStorage('so-cart');
+  cartItems = cartItems.filter(item => item.Id !== productId);
+
+  setLocalStorage('so-cart', cartItems);
+  renderCartContents();
 }
 
 renderCartContents();
