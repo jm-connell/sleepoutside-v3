@@ -4,8 +4,6 @@ import productDetails from "./productDetails.mjs";
 
 const productId = getParam('product');
 productDetails(productId, ".product-detail");
-// console.log(findProductById(productId));
-
 
 function addProductToCart(product) {
   let cartArray = getLocalStorage('so-cart')
