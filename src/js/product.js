@@ -4,8 +4,6 @@ import productDetails from "./productDetails.mjs";
 
 const productId = getParam('product');
 productDetails(productId, ".product-detail");
-// console.log(findProductById(productId));
-
 
 function addProductToCart(product) {
   let cartArray = getLocalStorage('so-cart')
@@ -17,8 +15,8 @@ function addProductToCart(product) {
   setLocalStorage('so-cart', cartArray);
 }
 // add to cart button event handler
-async function addToCartHandler(e) {
-  const product = await findProductById(e.target.dataset.id);
+async function addToCartHandler() {
+  const product = await findProductById(productId);
   addProductToCart(product);
 }
 
