@@ -24,6 +24,9 @@ function addProductToCart(product) {
 }
 
 function productDetailsTemplate(product) {
+  let discount = product.SuggestedRetailPrice - product.FinalPrice;
+  let roundedDiscount = Math.round(discount * 100) / 100;
+
   return `<h3>${product.Brand.Name}</h3>
   <h2 class="divider">${product.NameWithoutBrand}</h2>
   <img
@@ -31,7 +34,9 @@ function productDetailsTemplate(product) {
     src="${product.Image}"
     alt="${product.Name}"
   />
-  <p class="product-card__price">$${product.FinalPrice}</p>
+  <p class="product-retail_price">Original Price: <s>$${product.SuggestedRetailPrice}</s></p>
+  <p class="product-card__price">Final Price: $${product.FinalPrice}</p>
+  <p class="product_discount">Total Savings: $${roundedDiscount}</p>
   <p class="product__color">${product.Colors[0].ColorName}</p>
   <p class="product__description">
   ${product.DescriptionHtmlSimple}
