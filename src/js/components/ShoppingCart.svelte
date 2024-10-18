@@ -6,10 +6,7 @@
 <ul class="product-list">
   {#each cartItems as item}
     <li class="cart-card divider">
-      <a
-        href="/product_pages/index.html?productid={item.Id}"
-        class="cart-card__image"
-      >
+      <a href="#" class="cart-card__image">
         <span
           class="remove-item"
           data-id="${item.Id}"
