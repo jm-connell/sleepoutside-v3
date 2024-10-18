@@ -1,4 +1,5 @@
-import { setLocalStorage, getLocalStorage } from './utils.mjs';
+import { setLocalStorage, getLocalStorage, renderHeaderFooter } from './utils.mjs';
+import ShoppingCart from "./components/ShoppingCart.svelte";
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
@@ -12,6 +13,10 @@ function renderCartContents() {
     }
   });
 }
+
+new ShoppingCart({
+  target: document.querySelector(".products"),
+});
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
@@ -42,3 +47,4 @@ function removeItemFromCart(productId) {
 }
 
 renderCartContents();
+renderHeaderFooter();
