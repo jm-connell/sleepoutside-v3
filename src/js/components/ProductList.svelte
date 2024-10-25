@@ -1,15 +1,16 @@
 <script>
-  import { getDataWithImages } from "../productData.mjs";
+  import { getData } from "../productData.mjs";
   import ProductSummary from "./ProductSummary.svelte";
 
   // this is how we make a prop in svelte
   export let category;
+  export let categoryHeading;
   // if you are looking at this thinking that's strange to just stop with a promise
   // you would be right.  This will make more sense in a bit...stay tuned.
-  let promise = getDataWithImages(category);
+  let promise = getData(category);
 </script>
 
-<h2>Top Products: {category.charAt(0).toUpperCase() + category.slice(1)}</h2>
+<h2>Top Products: {categoryHeading}</h2>
 <ProductSummary dataPromise={promise} />
 
 <!-- {#await promise}

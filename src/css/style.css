@@ -76,6 +76,14 @@ header {
 .logo--square > div {
   margin-top: -1.7em;
 }
+
+.categories .product-card{
+  text-align: center;
+}
+.products .product-card{
+  text-align: center;
+}
+
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
