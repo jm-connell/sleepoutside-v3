@@ -15,14 +15,14 @@ export async function getProductsByCategory(category = "tents") {
 }
 
 export async function submitOrder(order) {
-  const response = {
+  const options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ order }),
+    body: JSON.stringify(order),
   };
-  return await fetch(baseURL + "checkout/", response).then(convertToJson);
+  return await fetch(baseURL + "checkout/", options).then(convertToJson);
 }
 
 

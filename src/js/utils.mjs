@@ -55,3 +55,14 @@ export function calculateSubtotal() {
   const cart = getLocalStorage("so-cart");
   return cart.reduce((acc, item) => acc + item.FinalPrice, 0);
 }
+
+export function formDataToJson(formElement) {
+  const formData = new FormData(formElement),
+    convertedJSON = {};
+
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
+}

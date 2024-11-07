@@ -1,14 +1,16 @@
 <script>
-  import { getLocalStorage, getCartCount, calculateSubtotal } from "../utils.mjs"
-  import { submitOrder, convertToJson } from "../productData.mjs"
+  import { getLocalStorage, getCartCount, calculateSubtotal, formDataToJson } from "../utils.mjs"
+  import { submitOrder } from "../productData.mjs"
 
     let tax = 0;
     let subtotal = 0;
     let shippingEstimate = 0;
     let total = 0;
     let itemCount = 0;
+    let list = [];
 
     function init() {
+      list = getLocalStorage('so-cart');
       calculateItemSummary();
     }
 
@@ -20,27 +22,34 @@
       total = Math.round(subtotal + tax + shippingEstimate, 2);
     }
 
-    function packageItems(items) {
-      items.map(item => {
-        return {
-          id: item.id,
-          name: item.name,
-          quantity: 1,
-          price: item.FinalPrice
-        }
-      })
-    }
+    const packageItems = function (items) {
+    const simplifiedItems = items.map((item) => {
+      return {
+        id: item.Id,
+        price: item.FinalPrice,
+        name: item.Name,
+        quantity: 1,
+      };
+    });
+    return simplifiedItems;
+  };
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       event.preventDefault();
-      const json = convertToJson(this);
+      const json = formDataToJson(this);
       json.orderDate = new Date();
-      json.orderTotal = total;
-      json.tax = tax;
-      json.shippingEstimate = shippingEstimate;
-      json.items = packageItems(getLocalStorage("so-cart"));
+      json.orderTotal = `${total}`;
+      json.tax = `${tax}`;
+      json.shipping = shippingEstimate;
+      json.items = packageItems(list);
+      console.log('ITEMS: ', json);
 
-      return submitOrder(json);
+      try {
+      const res = await submitOrder(json);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
     }
     
     init();
