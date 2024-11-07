@@ -1,13 +1,11 @@
-import { alertMessage } from "./utils.mjs";
-
 const baseURL = import.meta.env.VITE_SERVER_URL;
 
  export async function convertToJson(res) {
-  const jsonResponse = await res.json();
-  if (res.ok) {
-    return await res.json();
-  } else {
-    throw { name: 'servicesError', message: jsonResponse }; 
+   if (res.ok) {
+     return await res.json();
+    } else {
+      const jsonResponse = await res.json();
+      throw { name: 'servicesError', message: jsonResponse }; 
   }
 }
 
