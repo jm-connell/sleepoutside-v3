@@ -5,6 +5,7 @@
     calculateSubtotal,
     formDataToJson,
     alertMessage,
+    setLocalStorage,
   } from "../utils.mjs";
   import { submitOrder } from "../productData.mjs";
 
@@ -53,7 +54,8 @@
     try {
       const res = await submitOrder(json);
       console.log(res);
-      location.assign("/success.html");
+      location.assign("/checkout/success.html");
+      setLocalStorage("so-cart", []);
     } catch (err) {
       Object.values(err.message).forEach((msg) => alertMessage(msg));
     }
