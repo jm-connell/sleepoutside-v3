@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Sleep Outside | Cart</title>
+
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <script src="../js/cart.js" type="module"></script>
+  </head>
+
+  <body>
+    <header class="divider" id="mainHeader"></header>
+
+    <main class="divider">
+    
+    </main>
+
+    <footer id="mainFooter"></footer>
+    <script type="module">
+      import { checkLogin } from "../js/auth.mjs";
+      //import currentOrders from "../js/currentOrders.mjs";
+      import { loadHeaderFooter } from "../js/utils.mjs";
+      import { getOrders } from "../js/productData.mjs";
+
+      loadHeaderFooter();
+
+      const token = checkLogin();
+      //currentOrders("#orders", token);
+      let orders = getOrders(token);
+      console.log(orders);
+    </script>
+  </body>
+</html>
