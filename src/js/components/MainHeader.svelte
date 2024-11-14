@@ -1,5 +1,20 @@
 <script>
   import { cartCount } from "../stores.mjs";
+
+  let prevCartCount = 0;
+
+  function animateCart() {
+    let cart = document.querySelector(".cart");
+    cart.classList.add("animate-cart");
+    setTimeout(() => {
+      cart.classList.remove("animate-cart");
+    }, 500);
+  }
+
+  $: if ($cartCount > prevCartCount) {
+    animateCart();
+  }
+
 </script>
 
 <div class="logo">
