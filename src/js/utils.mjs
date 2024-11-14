@@ -78,3 +78,28 @@ export function alertMessage(message, scroll=true) {
   if(scroll) {
     window.scrollTo(0, 0);}
 }
+
+export async function alert() {
+  try {
+    const response = await fetch("../json/alerts.json");
+    if (!response.ok) {
+      throw new Error("Failed to fetch alerts");
+    }
+    const alerts = await response.json();
+    if (alerts.length > 0) {
+      const alertList = document.createElement("section");
+      alerts.forEach((a) => {
+        const alertItem = document.createElement("p");
+        alertItem.textContent = a.message;
+        alertItem.style.backgroundColor = a.background;
+        alertItem.style.color = a.color;
+        alertList.appendChild(alertItem);
+      });
+      // prepend list to main element
+      const main = document.querySelector("main");
+      main.prepend(alertList);
+    }
+  } catch (e) {
+    console.error(`Error fetching alerts: ${e.message}`);
+  }
+}
