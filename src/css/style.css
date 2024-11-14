@@ -213,6 +213,13 @@ button .remove-item{
   grid-column: 3;
 }
 
+.error-message {
+  text-align: center;
+  color: red;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 2em;
+}
+
 sup {
   position: absolute;
   top: 55%;
