@@ -1,6 +1,6 @@
 import { loginRequest } from "./productData.mjs";
 import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 const tokenKey = "so-token";
 
@@ -14,9 +14,11 @@ export async function login(creds, redirect) {
   }
 }
 
-function checkLogin() {
+export function checkLogin() {
   let token = getLocalStorage(tokenKey);
-  const valid = isTokenValid(token);
+
+  console.log(token);
+  const valid = isTokenValid(token.accessToken);
   if (!valid) {
     localStorage.removeItem(tokenKey);
     const location = window.location;
@@ -24,9 +26,9 @@ function checkLogin() {
   } else return token;
 }
 
-function isTokenValid(token) {
+export function isTokenValid(token) {
   if (token) {
-    const decoded = jwt_decode(token);
+    const decoded = jwtDecode(token);
     let currentDate = new Date();
     if (decoded.exp * 1000 < currentDate.getTime()) {
       console.log("Token is expired");

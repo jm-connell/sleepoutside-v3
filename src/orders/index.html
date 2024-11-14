@@ -9,8 +9,6 @@
     <title>Sleep Outside | Cart</title>
 
     <link rel="stylesheet" href="/css/style.css" />
-
-    <script src="../js/cart.js" type="module"></script>
   </head>
 
   <body>
@@ -24,10 +22,10 @@
     <script type="module">
       import { checkLogin } from "../js/auth.mjs";
       //import currentOrders from "../js/currentOrders.mjs";
-      import { loadHeaderFooter } from "../js/utils.mjs";
+      import { renderHeaderFooter } from "../js/utils.mjs";
       import { getOrders } from "../js/productData.mjs";
 
-      loadHeaderFooter();
+      renderHeaderFooter();
 
       const token = checkLogin();
       //currentOrders("#orders", token);
