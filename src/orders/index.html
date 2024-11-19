@@ -15,10 +15,14 @@
     <header class="divider" id="mainHeader"></header>
 
     <main class="divider">
-    
+    <h1>Orders</h1>
+    <h2>HOORAY, You are authorized!</h2>
+
+    <div id="ordersGrid"></div>
     </main>
 
     <footer id="mainFooter"></footer>
+
     <script type="module">
       import { checkLogin } from "../js/auth.mjs";
       //import currentOrders from "../js/currentOrders.mjs";
@@ -28,9 +32,35 @@
       renderHeaderFooter();
 
       const token = checkLogin();
-      //currentOrders("#orders", token);
-      let orders = getOrders(token);
-      console.log(orders);
+
+      async function fetchAndRenderOrders() {
+      try {
+        const orders = await getOrders(token);
+        renderOrders(orders);
+        console.log(orders);
+      } catch (error) {
+        console.error('Failed to fetch orders:', error);
+      }
+    }
+
+    fetchAndRenderOrders();
+
+      function renderOrders(orders) {
+        const ordersGrid = document.getElementById("ordersGrid");
+        ordersGrid.innerHTML = "";
+        orders.forEach((order) => {
+          const orderDiv = document.createElement("div");
+          orderDiv.classList.add("order");
+          orderDiv.innerHTML = `
+            <h3>Order #${order.id}</h3>
+            <p>Date: ${order.orderDate}</p>
+            <p>Total: $${order.orderTotal}</p>
+            <p>Name: ${order.fname} ${order.lname}</p>
+            <p>Location: ${order.city}, ${order.state}</p>
+          `;
+          ordersGrid.appendChild(orderDiv);
+        });
+      }
     </script>
   </body>
 </html>

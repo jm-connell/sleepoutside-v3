@@ -23,7 +23,8 @@ export function checkLogin() {
     localStorage.removeItem(tokenKey);
     const location = window.location;
     window.location = `/login/index.html?redirect=${location.pathname}`;
-  } else return token;
+    console.log("token expired, redirecting...");
+  } else return token.accessToken;
 }
 
 export function isTokenValid(token) {

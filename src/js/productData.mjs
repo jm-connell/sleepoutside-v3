@@ -46,6 +46,7 @@ export async function loginRequest(creds) {
 }
 
 export async function getOrders(token) {
+  console.log(`getting orders with token: ${token}`);
   const options = {
     method: "GET",
     headers: {
