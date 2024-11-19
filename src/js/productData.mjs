@@ -34,3 +34,25 @@ export async function findProductById(id) {
 
 }
 
+export async function loginRequest(creds) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(creds),
+  };
+  return await fetch(baseURL + "login", options).then(convertToJson);
+}
+
+export async function getOrders(token) {
+  console.log(`getting orders with token: ${token}`);
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(baseURL + "orders", options).then(convertToJson);
+  return response;
+}
