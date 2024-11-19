@@ -247,3 +247,31 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.order {
+  border: 1px solid #ccc;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.order h2 {
+  margin-top: 0;
+}
+
+.order ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.order li {
+  margin-bottom: 8px;
+}
