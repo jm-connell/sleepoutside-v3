@@ -9,6 +9,7 @@ export async function login(creds, redirect) {
     let token = await loginRequest(creds);
     console.log(token);
     setLocalStorage(tokenKey, token);
+    window.location.href = redirect;
   } catch (err) {
     alertMessage(err.message);
   }
