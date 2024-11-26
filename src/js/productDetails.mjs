@@ -38,11 +38,15 @@ function productDetailsTemplate(product) {
 
   return `<h3>${product.Brand.Name}</h3>
   <h2 class="divider">${product.NameWithoutBrand}</h2>
+  <picture>
+  <source media="(max-width: 320px)" srcset="${product.Images.PrimarySmall}" />
+  <source media="(max-width: 480px)" srcset="${product.Images.PrimaryMedium}" />
+  <source media="(max-width: 768px)" srcset="${product.Images.PrimaryLarge}" />
   <img
-    class="divider"
-    src="${product.Images.PrimaryLarge}"
-    alt="${product.Name}"
+    src="${product.Images.PrimaryExtraLarge}" 
+    alt="${product.Name}" 
   />
+</picture>
   <p class="product-retail_price">Original Price: <s>$${product.SuggestedRetailPrice}</s></p>
   <p class="product-card__price">Final Price: $${product.FinalPrice}</p>
   <p class="product_discount">Total Savings: $${roundedDiscount}</p>
