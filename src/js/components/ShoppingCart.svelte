@@ -24,7 +24,7 @@
           class="remove-item"
           on:click={() => removeItemFromCart(index)}
           style="cursor: pointer; color: red; background-color: aqua; display: contents; margin-left: 10px; ">X</button>
-        <img src={item.Image} alt={item.Name} />
+        <img src={item.Images.PrimarySmall} alt={item.Name} />
       </a>
       <a href="#">
         <h2 class="card__name">{item.Name}</h2>
